@@ -1,0 +1,26 @@
+{
+    "name": "ammarkannas/laravel-bbcode-parser",
+    "description": "Parse your bbcode easy with this library.",
+    "keywords": ["bbcode", "parser", "laravel"],
+    "type": "library",
+    "license": "MIT",
+    "require": {
+        "illuminate/support": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Ammar\\BBCode\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Ammar\\BBCode\\BBCodeServiceProvider"
+            ],
+            "aliases": {
+                "BBCode": "Ammar\\BBCode\\Facades\\BBCode"
+            }
+        }
+    },
+    "minimum-stability": "stable"
+}
