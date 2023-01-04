@@ -11,14 +11,14 @@ This package parse `bbcode` tags to html.
 Via Composer
 
 ``` bash
-composer require rwx-rwx/laravel-bbcode-parser
+composer require ammarkannas/laravel-bbcode-parser
 ```
 
 ## Usage With Laravel
 To parse some text it's as easy as this!
 
 ```php
-use Rwxrwx\BBCode\Facades\BBCode;
+use Ammar\BBCode\Facades\BBCode;
 
 echo BBCode::parse('[b]Text![/b]');
 // The result is '<strong>Text!</strong>' 
@@ -98,7 +98,7 @@ Or you can add using method
 
 namespace App\Providers;
 
-use Rwxrwx\BBCode\Facades\BBCode;
+use Ammar\BBCode\Facades\BBCode;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
