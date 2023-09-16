@@ -1,26 +1,30 @@
 {
-    "name": "ammarkannas/laravel-bbcode-parser",
-    "description": "Parse your bbcode easy with this library.",
-    "keywords": ["bbcode", "parser", "laravel"],
-    "type": "library",
-    "license": "MIT",
-    "require": {
-        "illuminate/support": "*"
-    },
-    "autoload": {
-        "psr-4": {
-            "Ammar\\BBCode\\": "src/"
-        }
-    },
-    "extra": {
-        "laravel": {
-            "providers": [
-                "Ammar\\BBCode\\BBCodeServiceProvider"
-            ],
-            "aliases": {
-                "BBCode": "Ammar\\BBCode\\Facades\\BBCode"
-            }
-        }
-    },
-    "minimum-stability": "stable"
+  "name": "agogeinc/laravel-bbcode-parser",
+  "description": "Parse your bbcode easy with this library, plus some additions to make it work for Subeta.",
+  "keywords": [
+    "bbcode",
+    "parser",
+    "laravel"
+  ],
+  "type": "library",
+  "license": "MIT",
+  "require": {
+    "illuminate/support": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Ammar\\BBCode\\": "src/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Agogeinc\\BBCode\\BBCodeServiceProvider"
+      ],
+      "aliases": {
+        "BBCode": "Agogeinc\\BBCode\\Facades\\BBCode"
+      }
+    }
+  },
+  "minimum-stability": "stable"
 }

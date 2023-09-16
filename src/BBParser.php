@@ -1,6 +1,6 @@
 <?php
 
-namespace Ammar\BBCode;
+namespace Agogeinc\BBCode;
 
 class BBParser
 {
@@ -28,7 +28,7 @@ class BBParser
      * @param  bool  $caseInsensitive
      * @return string
      */
-    public function parse(string $source, bool $caseInsensitive = false) : string
+    public function parse(string $source, bool $caseInsensitive = false): string
     {
         foreach ($this->enabledBBCodes as $name => $parser) {
             $pattern = ($caseInsensitive) ? $parser['pattern'] . 'i' : $parser['pattern'];
@@ -45,7 +45,7 @@ class BBParser
      * @param  string  $source
      * @return string
      */
-    public function stripTags(string $source) : string
+    public function stripTags(string $source): string
     {
         foreach ($this->bbcodes as $name => $parser) {
             $source = $this->searchAndReplace($parser['pattern'] . 'i', $parser['content'], $source);
@@ -62,10 +62,15 @@ class BBParser
      * @param  string  $source
      * @return string
      */
-    protected function searchAndReplace(string $pattern, string $replace, string $source) : string
+    protected function searchAndReplace(string $pattern, $replace, string $source): string
     {
-        while (preg_match($pattern, $source)) {
-            $source = preg_replace($pattern, $replace, $source);
+        while (preg_match($pattern, $source, $matches)) {
+            if (is_callable($replace)) {
+                $replacement = call_user_func($replace, $matches);
+                $source = str_replace($matches[0], $replacement, $source);
+            } else {
+                $source = preg_replace($pattern, $replace, $source);
+            }
         }
 
         return $source;
@@ -77,7 +82,7 @@ class BBParser
      * @param  string  $source
      * @return string
      */
-    public function parseCaseSensitive(string $source) : string
+    public function parseCaseSensitive(string $source): string
     {
         return $this->parse($source, false);
     }
@@ -88,7 +93,7 @@ class BBParser
      * @param  string  $source
      * @return string
      */
-    public function parseCaseInsensitive(string $source) : string
+    public function parseCaseInsensitive(string $source): string
     {
         return $this->parse($source, true);
     }
@@ -99,7 +104,7 @@ class BBParser
      * @param  string|array  $tag
      * @return self
      */
-    public function only(string|array $tag) : self
+    public function only(string|array $tag): self
     {
         $only = (is_array($tag)) ? $tag : func_get_args();
         $this->enabledBBCodes = array_intersect_key($this->bbcodes, array_flip((array) $only));
@@ -113,7 +118,7 @@ class BBParser
      * @param  string|array  $except
      * @return self
      */
-    public function except(string|array $tag) : self
+    public function except(string|array $tag): self
     {
         $except = (is_array($tag)) ? $tag : func_get_args();
 
@@ -127,7 +132,7 @@ class BBParser
      *
      * @return array
      */
-    public function getBBCodes() : array
+    public function getBBCodes(): array
     {
         return $this->enabledBBCodes;
     }
@@ -142,9 +147,9 @@ class BBParser
      * @param  string  $content
      * @return self
      */
-    public function addTag(string $name, string $search, string $replace, string $content) : self
+    public function addTag(string $name, string $search, string $replace, string $content): self
     {
-        $this->bbcodes[$name] =compact('search', 'replace', 'content');
+        $this->bbcodes[$name] = compact('search', 'replace', 'content');
         $this->enabledBBCodes[$name] = $this->bbcodes[$name];
 
         return $this;
