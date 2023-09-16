@@ -13,7 +13,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Ammar\\BBCode\\": "src/"
+      "Agogeinc\\BBCode\\": "src/"
     }
   },
   "extra": {
