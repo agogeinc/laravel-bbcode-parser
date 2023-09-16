@@ -1,6 +1,6 @@
 <?php
 
-namespace Ammar\BBCode\Facades;
+namespace Agogeinc\BBCode\Facades;
 
 use Illuminate\Support\Facades\Facade;
 

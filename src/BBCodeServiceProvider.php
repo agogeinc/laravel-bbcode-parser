@@ -1,6 +1,6 @@
 <?php
 
-namespace Ammar\BBCode;
+namespace Agogeinc\BBCode;
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
